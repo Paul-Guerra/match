@@ -16,7 +16,8 @@
     "bundle:dev": "npm run bundle -- --mode development",
     "bundle:prod": "npm run bundle -- --mode production",
     "bundle:watch": "npm run bundle:dev -- --watch",
-    "test": "jest --silent"
+    "test": "jest --silent",
+    "test:debug": "echo  \"Visit \\033[1;36mchrome://inspect\\033[0m then wait for your \\033[1;33mdebugger;\\033[0m statement to trigger\" && node --inspect-brk node_modules/.bin/jest $1"
   },
   "repository": {
     "type": "git",
