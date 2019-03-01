@@ -1,0 +1,66 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-eslint-rules",
+    "tslint-config-airbnb",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "array-type": [true, "array"],
+    "max-line-length": {
+      "severity": "warning",
+      "options": [120]
+    },
+    "object-literal-sort-keys": false,
+    "no-use-before-declare": true,
+    "no-this-assignment": [
+      true,
+      {
+        "allow-destructuring": true
+      }
+    ],
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "interface-name": [true, "never-prefix"],
+    "no-empty-interface": false,
+
+    "ordered-imports": false,
+    "member-access": false,
+    "no-empty": {
+      "severity": "warning"
+    },
+    "no-magic-numbers": true,
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-separator",
+      "check-rest-spread",
+      "check-type",
+      "check-preblock"
+    ],
+    "ter-indent": [
+      true,
+      2,
+      {
+        "FunctionDeclaration": {
+          "parameters": 1,
+          "body": 1
+        },
+        "FunctionExpression": {
+          "parameters": 1,
+          "body": 1
+        },
+        "MemberExpression": 1,
+        "SwitchCase": 1
+      }
+    ],
+    "jsx-curly-spacing": [true, "never"],
+    "import-name": [false],
+    "variable-name": [true, "check-format", "allow-pascal-case"],
+    "jsx-no-lambda": false,
+    "object-curly-spacing": true,
+    "quotemark": [true, "single", "jsx-double", "avoid-escape", "avoid-template"],
+    "interface-over-type-literal": false
+  }
+}

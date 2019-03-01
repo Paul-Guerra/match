@@ -4,11 +4,19 @@
   "description": "Find a substring across a collection of documents",
   "main": "index.js",
   "scripts": {
+    "build": "npm run prebuild && npm run ts:prod && npm run bundle:prod",
+    "prebuild": "npm run clear && npm run mkdir",
+    "clear": "shx rm -rf dist/ temp/",
+    "mkdir": "shx mkdir ./temp ./dist",
     "ts": "babel src --out-dir temp --extensions \".ts,.tsx\" --ignore \"src/**/*.test.tsx\",\"src/**/*.test.ts\",\"src/**/__tests__\"",
     "ts:dev": "npm run ts -- --source-maps inline",
     "ts:prod": "npm run ts -- --source-maps",
     "ts:watch": "npm run ts -- --source-maps inline --watch",
-    "test": "jest --silent"
+    "bundle": "webpack --entry ./temp/index.js --output ./dist/main.bundle.js",
+    "bundle:dev": "npm run bundle -- --mode development",
+    "bundle:prod": "npm run bundle -- --mode production",
+    "bundle:watch": "npm run bundle:dev -- --watch",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,9 +31,11 @@
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/plugin-transform-typescript": "^7.3.2",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-typescript": "^7.3.3",
+    "@types/jest": "^24.0.9",
     "jest": "^24.1.0",
     "shx": "^0.3.2",
     "tslint": "^5.13.0",
