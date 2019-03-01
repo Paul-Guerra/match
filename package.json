@@ -1,0 +1,38 @@
+{
+  "name": "match",
+  "version": "0.0.1",
+  "description": "Find a substring across a collection of documents",
+  "main": "index.js",
+  "scripts": {
+    "ts": "babel src --out-dir temp --extensions \".ts,.tsx\" --ignore \"src/**/*.test.tsx\",\"src/**/*.test.ts\",\"src/**/__tests__\"",
+    "ts:dev": "npm run ts -- --source-maps inline",
+    "ts:prod": "npm run ts -- --source-maps",
+    "ts:watch": "npm run ts -- --source-maps inline --watch",
+    "test": "jest --silent"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paul-Guerra/match.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Paul-Guerra/match/issues"
+  },
+  "homepage": "https://github.com/Paul-Guerra/match#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-transform-typescript": "^7.3.2",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-typescript": "^7.3.3",
+    "jest": "^24.1.0",
+    "shx": "^0.3.2",
+    "tslint": "^5.13.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^3.3.3333",
+    "webpack": "^4.29.6"
+  }
+}
