@@ -9,9 +9,9 @@ interface EntryDocInfo {
 
 class InvertedIndex {
 
-  index: Entry;
+  words: Entry;
   constructor() {
-    this.index  = {};
+    this.words  = {};
   }
 
   /**
@@ -19,7 +19,7 @@ class InvertedIndex {
    * @param {string} word - Word to test
    */
   has(word: string) {
-    return !!this.index[word];
+    return !!this.words[word];
   }
 
   /**
@@ -27,8 +27,7 @@ class InvertedIndex {
    * @param {string} word - Word to query
    */
   get(word: string): EntryDocInfo {
-    if (this.has(word)) return this.index[word];
-    return {};
+    return this.words[word] || {};
   }
 
   /**
@@ -38,33 +37,28 @@ class InvertedIndex {
    * @param {number} order - The words relative order in the document
    * @returns {object} The indexed data for the word
    */
-  addWordFromDoc(word: string, docId: string, order: number): void {
-    if (!this.index[word]) {
-      this.index[word] = { [docId]: { offsets: new Set([order]) } };
+  add(word: string, docId: string, order: number): void {
+    if (!this.words[word]) {
+      this.words[word] = { [docId]: { offsets: new Set([order]) } };
       return;
     }
-    if (!this.index[word][docId]) {
-      this.index[word][docId] = { offsets: new Set([order]) };
+    if (!this.words[word][docId]) {
+      this.words[word][docId] = { offsets: new Set([order]) };
       return;
     }
-    this.index[word][docId].offsets.add(order);
+    this.words[word][docId].offsets.add(order);
   }
 
   /**
    * @description Removes the document data assciated with a word
    * @param {string} word - Word that is associated with the document
-   * @param {string} docId - Document to be removed
-   * @returns {number} The updated document count for the word
+   * @param {string} docId - Id of document to be removed
    */
-  removeDocument(word: string, docId: string) {
-    let docCount;
-    if (!this.index[word][docId]) {
-      return Object.keys(this.index[word]).length;
-    }
-    delete this.index[word][docId];
-    docCount = Object.keys(this.index[word]).length;
-    if (docCount === 0) this.remove(word);
-    return docCount;
+  removeDocumentData(word: string, docId: string) {
+    if (!this.words[word][docId]) return;
+    delete this.words[word][docId];
+    if (Object.keys(this.words[word]).length === 0) this.remove(word);
+    return;
   }
 
   /**
@@ -72,7 +66,7 @@ class InvertedIndex {
    * @param {string} word - Word to be removed
    */
   remove(word: string) {
-    delete this.index[word];
+    delete this.words[word];
   }
 }
 
