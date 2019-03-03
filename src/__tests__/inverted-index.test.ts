@@ -84,7 +84,7 @@ describe('InvertedIndex.remove', () => {
   });
 });
 
-describe('InvertedIndex.removeDocumentData', () => {
+describe('InvertedIndex.remove', () => {
   let index: InvertedIndex;
 
   beforeEach(() => {
@@ -98,5 +98,39 @@ describe('InvertedIndex.removeDocumentData', () => {
     index.remove('foo');
     expect(index.has('foo')).toBe(false);
     expect(index.words.foo).toBe(undefined);
+  });
+});
+
+
+describe('InvertedIndex.removeDocumentData', () => {
+  let index: InvertedIndex;
+
+  beforeEach(() => {
+    index = new InvertedIndex();
+    index.add('foo', 'doc1', 1);
+    index.add('foo', 'doc1', 2);
+    index.add('foo', 'doc2', 3);
+  });
+
+  it('removes a document association with a word', () => {
+    index.removeDocumentData('foo', 'doc1');
+    expect(index.has('foo')).toBe(true);
+    expect(index.words.foo).toBeTruthy();
+    expect(index.words.foo.doc1).toBeFalsy();
+    expect(index.words.foo.doc2).toBeTruthy();
+  });
+
+  it('does nothing if the document is not associated with the word', () => {
+    index.removeDocumentData('foo', 'DOES_NOT_EXIST');
+    expect(index.has('foo')).toBe(true);
+    expect(index.words.foo).toBeTruthy();
+    expect(index.words.foo.doc1).toBeTruthy();
+    expect(index.words.foo.doc2).toBeTruthy();
+  });
+
+  it('removes the word from the index if no documents are associated with it anymore', () => {
+    index.removeDocumentData('foo', 'doc1');
+    index.removeDocumentData('foo', 'doc2');
+    expect(index.has('foo')).toBe(false);
   });
 });
