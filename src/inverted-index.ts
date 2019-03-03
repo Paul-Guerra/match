@@ -7,7 +7,12 @@ interface EntryDocInfo {
   };
 }
 
-class InvertedIndex {
+interface InvertedIndex {
+  has(word: string): boolean;
+  get(word: string): EntryDocInfo;
+  add(word: string, docId: string, offset: number): void;
+}
+class DocumentsIndex implements InvertedIndex {
 
   words: Entry;
   
@@ -19,7 +24,7 @@ class InvertedIndex {
    * @description Returns true if word is indexed, false if it is absent
    * @param {string} word - Word to test
    */
-  has(word: string) {
+  has(word: string): boolean {
     return !!this.words[word];
   }
 
@@ -71,4 +76,4 @@ class InvertedIndex {
   }
 }
 
-export default InvertedIndex;
+export default DocumentsIndex;

@@ -1,12 +1,12 @@
 /* tslint:disable:no-magic-numbers */
 
-import InvertedIndex from '../inverted-index';
+import DocumentsIndex from '../inverted-index';
 
 describe('InvertedIndex.add', () => {
-  let index: InvertedIndex;
+  let index: DocumentsIndex;
 
   beforeEach(() => {
-    index = new InvertedIndex();
+    index = new DocumentsIndex();
   });
 
   it('can add a word to an empty index', () => {
@@ -33,10 +33,10 @@ describe('InvertedIndex.add', () => {
 });
 
 describe('InvertedIndex.has', () => {
-  let index: InvertedIndex;
+  let index: DocumentsIndex;
 
   beforeEach(() => {
-    index = new InvertedIndex();
+    index = new DocumentsIndex();
   });
 
   it('returns true if a word has been indexed', () => {
@@ -51,10 +51,10 @@ describe('InvertedIndex.has', () => {
 
 
 describe('InvertedIndex.get', () => {
-  let index: InvertedIndex;
+  let index: DocumentsIndex;
 
   beforeEach(() => {
-    index = new InvertedIndex();
+    index = new DocumentsIndex();
   });
 
   it('returns entry if a word has been indexed', () => {
@@ -68,10 +68,10 @@ describe('InvertedIndex.get', () => {
 });
 
 describe('InvertedIndex.remove', () => {
-  let index: InvertedIndex;
+  let index: DocumentsIndex;
 
   beforeEach(() => {
-    index = new InvertedIndex();
+    index = new DocumentsIndex();
     index.add('foo', 'doc1', 1);
     index.add('foo', 'doc1', 2);
     index.add('foo', 'doc2', 3);
@@ -85,10 +85,10 @@ describe('InvertedIndex.remove', () => {
 });
 
 describe('InvertedIndex.remove', () => {
-  let index: InvertedIndex;
+  let index: DocumentsIndex;
 
   beforeEach(() => {
-    index = new InvertedIndex();
+    index = new DocumentsIndex();
     index.add('foo', 'doc1', 1);
     index.add('foo', 'doc1', 2);
     index.add('foo', 'doc2', 3);
@@ -103,10 +103,10 @@ describe('InvertedIndex.remove', () => {
 
 
 describe('InvertedIndex.removeDocumentData', () => {
-  let index: InvertedIndex;
+  let index: DocumentsIndex;
 
   beforeEach(() => {
-    index = new InvertedIndex();
+    index = new DocumentsIndex();
     index.add('foo', 'doc1', 1);
     index.add('foo', 'doc1', 2);
     index.add('foo', 'doc2', 3);

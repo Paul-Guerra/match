@@ -1,7 +1,7 @@
-import InvertedIndex from './inverted-index';
+import DocumentsIndex from './inverted-index';
 
 class Match {
-  index: InvertedIndex = new InvertedIndex();
+  index: DocumentsIndex = new DocumentsIndex();
   idProp: string = '';
   textProp: string = '';
 
