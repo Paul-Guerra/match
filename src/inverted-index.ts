@@ -35,19 +35,19 @@ class InvertedIndex {
    * @description Creates an index for a word with associated data
    * @param {string} word - Word to be indexed
    * @param {string} docId - Id of the document
-   * @param {number} order - The words relative order in the document
+   * @param {number} offset - The words relative order in the document
    * @returns {object} The indexed data for the word
    */
-  add(word: string, docId: string, order: number): void {
+  add(word: string, docId: string, offset: number): void {
     if (!this.words[word]) {
-      this.words[word] = { [docId]: { offsets: new Set([order]) } };
+      this.words[word] = { [docId]: { offsets: new Set([offset]) } };
       return;
     }
     if (!this.words[word][docId]) {
-      this.words[word][docId] = { offsets: new Set([order]) };
+      this.words[word][docId] = { offsets: new Set([offset]) };
       return;
     }
-    this.words[word][docId].offsets.add(order);
+    this.words[word][docId].offsets.add(offset);
   }
 
   /**
