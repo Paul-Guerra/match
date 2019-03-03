@@ -1,4 +1,4 @@
-import DocumentsIndex from './inverted-index';
+import DocumentsIndex from './documents-index';
 
 class Match {
   index: DocumentsIndex = new DocumentsIndex();

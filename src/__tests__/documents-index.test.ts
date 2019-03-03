@@ -1,8 +1,7 @@
 /* tslint:disable:no-magic-numbers */
+import DocumentsIndex from '../documents-index';
 
-import DocumentsIndex from '../inverted-index';
-
-describe('InvertedIndex.add', () => {
+describe('DocumentsIndex.add', () => {
   let index: DocumentsIndex;
 
   beforeEach(() => {
@@ -32,7 +31,7 @@ describe('InvertedIndex.add', () => {
   });
 });
 
-describe('InvertedIndex.has', () => {
+describe('DocumentsIndex.has', () => {
   let index: DocumentsIndex;
 
   beforeEach(() => {
@@ -50,7 +49,7 @@ describe('InvertedIndex.has', () => {
 });
 
 
-describe('InvertedIndex.get', () => {
+describe('DocumentsIndex.get', () => {
   let index: DocumentsIndex;
 
   beforeEach(() => {
@@ -67,7 +66,7 @@ describe('InvertedIndex.get', () => {
   });
 });
 
-describe('InvertedIndex.remove', () => {
+describe('DocumentsIndex.remove', () => {
   let index: DocumentsIndex;
 
   beforeEach(() => {
@@ -84,7 +83,7 @@ describe('InvertedIndex.remove', () => {
   });
 });
 
-describe('InvertedIndex.remove', () => {
+describe('DocumentsIndex.remove', () => {
   let index: DocumentsIndex;
 
   beforeEach(() => {
@@ -102,7 +101,7 @@ describe('InvertedIndex.remove', () => {
 });
 
 
-describe('InvertedIndex.removeDocumentData', () => {
+describe('DocumentsIndex.removeDocumentData', () => {
   let index: DocumentsIndex;
 
   beforeEach(() => {

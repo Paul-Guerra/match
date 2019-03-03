@@ -1,17 +1,19 @@
-interface Entry {
+export interface Entry {
   [word: string] : EntryDocInfo;
 }
-interface EntryDocInfo {
+
+export interface EntryDocInfo {
   [doc: string] : {
     offsets: Set<number>
   };
 }
 
-interface InvertedIndex {
+export interface InvertedIndex {
   has(word: string): boolean;
   get(word: string): EntryDocInfo;
   add(word: string, docId: string, offset: number): void;
 }
+
 class DocumentsIndex implements InvertedIndex {
 
   words: Entry;
