@@ -10,6 +10,7 @@ interface EntryDocInfo {
 class InvertedIndex {
 
   words: Entry;
+  
   constructor() {
     this.words  = {};
   }
