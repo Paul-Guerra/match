@@ -1,3 +1,4 @@
+/* tslint:disable:no-magic-numbers */
 import Match from '../match';
 import buildCorpus from './messages';
 let messages = buildCorpus(600000, 'KEY WORD');
@@ -8,5 +9,9 @@ console.time('adding docs to index');
 messages.forEach((doc) => match.add(doc));
 console.timeEnd('adding docs to index');
 
-// console.log('new Match():', new Match());
-// console.log('buildCorpus:', buildCorpus());
+
+console.time('searching for docs with "KEY WORD"');
+let results = match.findWithoutOrder('KEY WORD');
+console.timeEnd('searching for docs with "KEY WORD"');
+console.log('results', results.size);
+

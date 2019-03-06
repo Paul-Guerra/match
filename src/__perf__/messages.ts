@@ -1,4 +1,3 @@
-// import loremIpsum from 'lorem-ipsum';
 const loremIpsum = require('lorem-ipsum');
 const makeRandomName = require('./name-generator');
 
