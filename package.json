@@ -12,7 +12,7 @@
     "ts:dev": "npm run ts -- --source-maps inline",
     "ts:prod": "npm run ts -- --source-maps",
     "ts:watch": "npm run ts -- --source-maps inline --watch",
-    "bundle": "webpack --entry ./temp/index.js --output ./dist/match.js",
+    "bundle": "webpack --entry ./temp/match.js --output ./dist/match.js",
     "bundle:dev": "npm run bundle -- --mode development",
     "bundle:prod": "npm run bundle -- --mode production",
     "bundle:watch": "npm run bundle:dev -- --watch",
@@ -39,12 +39,14 @@
     "@babel/preset-typescript": "^7.3.3",
     "@types/jest": "^24.0.9",
     "jest": "^24.1.0",
+    "lorem-ipsum": "^1.0.6",
     "shx": "^0.3.2",
     "tslint": "^5.13.0",
     "tslint-config-airbnb": "^5.11.1",
     "tslint-config-prettier": "^1.18.0",
     "tslint-eslint-rules": "^5.4.0",
     "typescript": "^3.3.3333",
-    "webpack": "^4.29.6"
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
   }
 }

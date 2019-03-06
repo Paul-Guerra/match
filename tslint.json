@@ -28,7 +28,7 @@
     "no-empty": {
       "severity": "warning"
     },
-    "no-magic-numbers": true,
+    "no-magic-numbers": [true, 0, 1, 2, 3],
     "whitespace": [
       true,
       "check-branch",

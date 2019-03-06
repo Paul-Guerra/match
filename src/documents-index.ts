@@ -39,6 +39,15 @@ class DocumentsIndex implements InvertedIndex {
   }
 
   /**
+   * @description Returns the words in the index that match the given pattern
+   * @param pattern RegEx pattern to match
+   */
+  getWordsMatching(pattern: RegExp): RegExpMatchArray | null {
+    const allTheWords = Object.keys(this.words).join('\n');
+    return allTheWords.match(pattern);
+  }
+
+  /**
    * @description Creates an index for a word with associated data
    * @param {string} word - Word to be indexed
    * @param {string} docId - Id of the document
