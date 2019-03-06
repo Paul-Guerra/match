@@ -54,7 +54,6 @@ class Match {
    * @param query String to search for
    */
   findWithoutOrder(query: string): Set<string> {
-    debugger;
     const words = getQueryWords(query.trim());
     let results: Set<string> = new Set();
     let documentIds: string[] = [];
