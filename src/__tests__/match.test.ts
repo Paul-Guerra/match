@@ -76,10 +76,10 @@ describe('Match.find', () => {
     expect(results.size).toBe(1);
   });
 
-  // it('returns empty results when there is no match', () => {
-  //   const results = match.findWithoutOrder('BAD');
-  //   expect(results.size).toBe(0);
-  // });
+  it('returns empty results when there is no match', () => {
+    const results = match.findWithoutOrder('BAD');
+    expect(results.size).toBe(0);
+  });
 
   it('does not return documents that match only some the words', () => {
     const results = match.findWithoutOrder('bar BAD');
