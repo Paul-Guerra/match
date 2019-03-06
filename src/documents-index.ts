@@ -1,12 +1,12 @@
 export interface Entry {
-  [word: string] : EntryDocInfo;
+  [word: string] : Set<string>;
 }
 
-export interface EntryDocInfo {
-  [doc: string] : {
-    offsets: Set<number>
-  };
-}
+// export interface EntryDocInfo {
+//   [doc: string] : {
+//     offsets: Set<number>
+//   };
+// }
 
 
 class DocumentsIndex {
@@ -29,8 +29,8 @@ class DocumentsIndex {
    * @description Returns index data for a word. If word is not indexed it returns false
    * @param {string} word - Word to query
    */
-  get(word: string): EntryDocInfo {
-    return this.words[word] || {};
+  get(word: string): Set<string> {
+    return this.words[word] || new Set();
   }
 
   /**
@@ -46,19 +46,13 @@ class DocumentsIndex {
    * @description Creates an index for a word with associated data
    * @param {string} word - Word to be indexed
    * @param {string} docId - Id of the document
-   * @param {number} offset - The words relative order in the document
    * @returns {object} The indexed data for the word
    */
   add(word: string, docId: string, offset: number): void {
     if (!this.words[word]) {
-      this.words[word] = { [docId]: { offsets: new Set([offset]) } };
-      return;
+      this.words[word] = new Set();
     }
-    if (!this.words[word][docId]) {
-      this.words[word][docId] = { offsets: new Set([offset]) };
-      return;
-    }
-    this.words[word][docId].offsets.add(offset);
+    this.words[word].add(docId);
   }
 
   /**
@@ -67,10 +61,8 @@ class DocumentsIndex {
    * @param {string} docId - Id of document to be removed
    */
   removeDocumentData(word: string, docId: string) {
-    if (!this.words[word][docId]) return;
-    delete this.words[word][docId];
-    if (Object.keys(this.words[word]).length === 0) this.remove(word);
-    return;
+    this.words[word].delete(docId);
+    if (this.words[word].size === 0) this.remove(word);
   }
 
   /**

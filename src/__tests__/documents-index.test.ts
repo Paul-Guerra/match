@@ -10,24 +10,22 @@ describe('DocumentsIndex.add', () => {
 
   it('can add a word to an empty index', () => {
     index.add('foo', 'abc', 1);
-    expect(index.words.foo.abc.offsets.has(1)).toBe(true);
+    expect(index.words.foo.has('abc')).toBe(true);
   });
 
   it('can add a new document to an existing word in the index', () => {
     index.add('foo', 'abc', 2);
     index.add('foo', 'def', 3);
-    expect(index.words.foo.abc.offsets.has(2)).toBe(true);
-    expect(index.words.foo.def.offsets.has(3)).toBe(true);
-    expect(index.words.foo.abc.offsets.size).toEqual(1);
-    expect(index.words.foo.def.offsets.size).toEqual(1);
+    expect(index.words.foo.has('abc')).toBe(true);
+    expect(index.words.foo.has('def')).toBe(true);
+    expect(index.words.foo.size).toEqual(2);
   });
 
-  it('can add a new offset to a repeated word from the same document', () => {
+  it.skip('can add a new offset to a repeated word from the same document', () => {
     index.add('foo', 'abc', 4);
     index.add('foo', 'abc', 5);
-    expect(index.words.foo.abc.offsets.has(4)).toBe(true);
-    expect(index.words.foo.abc.offsets.has(5)).toBe(true);
-    expect(index.words.foo.abc.offsets.size).toEqual(2);
+    expect(index.words.foo.has('abc')).toBe(true);
+    expect(index.words.foo.size).toEqual(2);
   });
 });
 
@@ -58,11 +56,12 @@ describe('DocumentsIndex.get', () => {
 
   it('returns entry if a word has been indexed', () => {
     index.add('foo', 'abc', 1);
-    expect(index.get('foo').abc.offsets.has(1)).toBe(true);
+    expect(index.get('foo').has('abc')).toBe(true);
+    expect(index.get('foo').size).toBe(1);
   });
 
-  it('returns false if a word has been not indexed', () => {
-    expect(Object.keys(index.get('MISSING')).length).toBe(0);
+  it('returns empty set if a word has been not indexed', () => {
+    expect(index.get('MISSING').size).toBe(0);
   });
 });
 
@@ -115,21 +114,23 @@ describe('DocumentsIndex.removeDocumentData', () => {
     index.removeDocumentData('foo', 'doc1');
     expect(index.has('foo')).toBe(true);
     expect(index.words.foo).toBeTruthy();
-    expect(index.words.foo.doc1).toBeFalsy();
-    expect(index.words.foo.doc2).toBeTruthy();
+    expect(index.words.foo.has('doc1')).not.toBe(true);
+    expect(index.words.foo.has('doc2')).toBe(true);
   });
 
   it('does nothing if the document is not associated with the word', () => {
     index.removeDocumentData('foo', 'DOES_NOT_EXIST');
     expect(index.has('foo')).toBe(true);
     expect(index.words.foo).toBeTruthy();
-    expect(index.words.foo.doc1).toBeTruthy();
-    expect(index.words.foo.doc2).toBeTruthy();
+    expect(index.words.foo.has('doc1')).toBe(true);
+    expect(index.words.foo.has('doc2')).toBe(true);
   });
 
   it('removes the word from the index if no documents are associated with it anymore', () => {
     index.removeDocumentData('foo', 'doc1');
     index.removeDocumentData('foo', 'doc2');
     expect(index.has('foo')).toBe(false);
+    expect(index.words.foo).toBeFalsy();
+
   });
 });

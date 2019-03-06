@@ -54,6 +54,7 @@ class Match {
    * @param query String to search for
    */
   findWithoutOrder(query: string): Set<string> {
+    debugger;
     const words = getQueryWords(query.trim());
     let results: Set<string> = new Set();
     let documentIds: string[] = [];
@@ -63,7 +64,7 @@ class Match {
       if (!wordsWithMatch) return new Set();
       wordsWithMatch.forEach(match => 
         documentIds = documentIds.concat(
-          Object.keys(this.index.get(match))
+          Array.from(this.index.get(match).values())
         )
       );
       const documents = new Set(documentIds);
