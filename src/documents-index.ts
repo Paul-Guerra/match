@@ -8,13 +8,8 @@ export interface EntryDocInfo {
   };
 }
 
-export interface InvertedIndex {
-  has(word: string): boolean;
-  get(word: string): EntryDocInfo;
-  add(word: string, docId: string, offset: number): void;
-}
 
-class DocumentsIndex implements InvertedIndex {
+class DocumentsIndex {
 
   words: Entry;
   
